@@ -3,7 +3,8 @@ from .models import Todo
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ['id','title','completed','created_at']
+        fields = ['id','user','title','completed','created_at']
+        read_only_fields = ['user']
 
     def validate_title(self, value):
         if len(value) < 3:
