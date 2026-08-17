@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'todos',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,12 @@ REST_FRAMEWORK = {
     'dEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', 
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ),
 }
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Todo API Project',
@@ -144,7 +150,6 @@ SPECTACULAR_SETTINGS = {
         'persistAuthorization': True,
     },
     'COMPONENT_SPLIT_REQUEST': True,
-    # JWT Bearer Authentication Authorization መስኮት ላይ እንዲመጣ የሚከተለውን አክል፦
     'APPEND_COMPONENTS': {
         'securitySchemes': {
             'jwtAuth': {
