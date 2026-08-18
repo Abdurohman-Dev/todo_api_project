@@ -1,7 +1,8 @@
 from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets, filters
+from rest_framework import filters
+from .paginations import StandardResultsSetPagiantion
 from .models import Todo
 from .serializers import TodoSerializer
 from .permissions import IsOwner
@@ -9,6 +10,8 @@ from .permissions import IsOwner
 class TodoListCreateView(generics.ListCreateAPIView):
     serializer_class = TodoSerializer
     permission_classes = [IsAuthenticated]
+
+    pagination_class = StandardResultsSetPagiantion
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
         
