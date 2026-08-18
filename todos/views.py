@@ -6,6 +6,9 @@ from .paginations import StandardResultsSetPagiantion
 from .models import Todo
 from .serializers import TodoSerializer
 from .permissions import IsOwner
+from .serializers import RegisterSerializer
+from django.contrib.auth.models import User
+
 
 class TodoListCreateView(generics.ListCreateAPIView):
     serializer_class = TodoSerializer
@@ -28,3 +31,7 @@ class TodoDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Todo.objects.filter(user=self.request.user)
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RegisterSerializer
