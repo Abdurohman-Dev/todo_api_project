@@ -8,7 +8,8 @@ from .serializers import TodoSerializer
 from .permissions import IsOwner
 from .serializers import RegisterSerializer
 from django.contrib.auth.models import User
-
+from .serializers import UserSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class TodoListCreateView(generics.ListCreateAPIView):
     serializer_class = TodoSerializer
@@ -35,3 +36,10 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = RegisterSerializer
+class UserProfileView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get_object(self):
+        return self.request.user

@@ -33,7 +33,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             password= self.validated_data['password']
         )
         return user
-
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
 
 
 

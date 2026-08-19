@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TodoListCreateView, TodoDetailView, RegisterView
+from .views import TodoListCreateView, TodoDetailView, RegisterView, UserProfileView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,)
@@ -18,5 +18,6 @@ urlpatterns = [
     path('docs/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', UserProfileView.as_view(), name='user-profile'),
     
 ]

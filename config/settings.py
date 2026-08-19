@@ -156,7 +156,7 @@ SPECTACULAR_SETTINGS = {
         'securitySchemes': {
             'jwtAuth': {
                 'type': 'http',
-                'scheme': 'bearer',
+                'scheme':'bearer',
                 'bearerFormat': 'JWT',
             }
         }
